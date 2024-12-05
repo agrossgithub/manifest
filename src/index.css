@@ -1,13 +1,583 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Variáveis de Design */
+:root {
+  --primary: #006400;
+  --primary-dark: #004d00;
+  --accent: #ff4500;
+  --accent-dark: #e03e00;
+  --success: #28a745;
+  --danger: #dc3545;
+  --edit: #1e90ff;
+  --gray: #808080;
+  --text-dark: #333;
+  --text-light: #555;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.2);
+  --transition: all 0.3s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Estilos Base */
+body {
+  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+/* Header */
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+header img {
+  height: 50px;
+  transition: var(--transition);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  flex: 1;
+  text-align: center;
+  margin: 10px 0;
+}
+
+header .btn {
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+header .btn:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Seção de Login */
+#loginSection {
+  max-width: 400px;
+  width: 100%;
+  margin: 40px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transition: var(--transition);
+}
+
+#loginSection:hover {
+  transform: translateY(-5px);
+}
+
+#loginSection img {
+  display: block;
+  margin: 0 auto 20px;
+  width: 80px; /* Aumentado de 60px para 200px */
+  height: auto;
+}
+
+#loginSection h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.75rem;
+  color: var(--text-dark);
+}
+
+/* Botão de Tela Cheia */
+#fullscreenBtnLogin {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  color: var(--primary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#fullscreenBtnLogin:hover {
+  color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+/* Controles de Formulário */
+.form-control {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  transition: var(--transition);
+}
+
+#loginSection .form-control {
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 1rem;
+}
+
+#loginSection .btn-submit {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#loginSection .btn-submit:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Seções do Usuário e Administrador */
+.panel {
+  display: none;
+}
+
+.form-section {
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow-md);
+}
+
+.form-section h2 {
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: var(--text-light);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.form-section .form-control,
+.form-section select,
+.form-section textarea {
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  transition: var(--transition);
+}
+
+.form-section .form-control:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.1);
+}
+
+.form-section button,
+.form-section .btn-submit {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.form-section button:hover,
+.form-section .btn-submit:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Botões de Limpar */
+.btn-clear {
+  background-color: var(--gray);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-clear:hover {
+  background-color: #696969;
+  transform: translateY(-2px);
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table, th, td {
+  border: 1px solid #e2e8f0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f4f4f4;
+}
+
+/* Filtros */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters label {
+  font-weight: bold;
+  color: var(--text-light);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.filters select {
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 150px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.filters select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.1);
+}
+
+.filters button {
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.filters button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Estrela Piscando */
+.blinking-star {
+  color: gold;
+  animation: blinker 1.5s linear infinite;
+  font-size: 1.25rem;
+  vertical-align: middle;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+/* Botões de Ação */
+.btn-edit, .btn-approve, .btn-reject {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.btn-edit {
+  background-color: var(--edit);
+}
+
+.btn-approve {
+  background-color: var(--success);
+}
+
+.btn-reject {
+  background-color: var(--danger);
+}
+
+.btn-edit:hover {
+  background-color: #0d6efd;
+  transform: translateY(-2px);
+}
+
+.btn-approve:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.btn-reject:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 25px;
+  border: none;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  height: auto;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content.square {
+  width: 500px;
+  height: 500px;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  transform: scale(1.1);
+}
+
+/* Botão Flutuante (FAB) */
+.fab {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 1.5rem;
+}
+
+.fab:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+/* Botão de Tela Cheia */
+.fullscreen-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 1.25rem;
+}
+
+.fullscreen-btn:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+/* Botões de Campo */
+.campo-button {
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  text-align: left;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.campo-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 100, 0, 0.5);
+  border-color: var(--primary);
+}
+
+.campo-button .placeholder {
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.25rem;
+  }
+  
+  header img {
+    height: 40px;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+  
+  .close {
+    font-size: 1.5rem;
+    top: 10px;
+    right: 15px;
+  }
+  
+  .form-section h2 {
+    font-size: 1.25rem;
+  }
+  
+  .form-section .form-control,
+  .form-section select,
+  .form-section textarea {
+    font-size: 0.875rem;
+  }
+  
+  .form-section button,
+  .form-section .btn-submit {
+    font-size: 0.875rem;
+    padding: 8px 16px;
+  }
+  
+  .btn-clear {
+    font-size: 0.875rem;
+    padding: 8px 16px;
+  }
+  
+  .fab {
+    width: 70px;
+    height: 70px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.75rem;
+  }
+  
+  .fullscreen-btn {
+    bottom: 120px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.125rem;
+  }
 }

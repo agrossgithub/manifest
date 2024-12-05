@@ -1,0 +1,96 @@
+/* src/componentes/RequestForm.css */
+
+.request-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.request-form label {
+  font-weight: bold;
+}
+
+.request-form input,
+.request-form select,
+.request-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-submit {
+  padding: 10px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+}
+
+.request-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.request-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.admin-actions,
+.user-actions {
+  margin-top: 10px;
+}
+
+.admin-actions button,
+.user-actions button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-approve {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-approve:hover {
+  background-color: #45a049;
+}
+
+.btn-reject {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-reject:hover {
+  background-color: #da190b;
+}
+
+.btn-delete {
+  background-color: #555;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #333;
+}
